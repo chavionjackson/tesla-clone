@@ -1,12 +1,17 @@
-import React from 'react';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="App">
-    <h1>Tesla Clone 🚀</h1>
-    </div>
+    <Router>
+      <div className="App">
+        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+      </div>
+    </Router>
   );
 }
 
