@@ -77,6 +77,43 @@
   font-weight: 600;
 }
 
-/* .buttonPrimary {
-  padding-top: 12px;
-} */
+.login-form > input:focus {
+  border: 1px solid #d6d6d7;
+  transition: all 0.2s;
+}
+
+.login-divider {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.login-divider > hr {
+  width: 40%;
+  height: 0;
+  opacity: 0.3;
+}
+
+.login-divider > span {
+  font-weight: 500;
+  color: #5c5e62;
+}
+
+.login__info > a > button {
+  background-color: transparent;
+  border: 3px solid #171a20;
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  color: #171a20;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.login__info > a > button:hover {
+  background-color: #171a20;
+  color: white;
+}

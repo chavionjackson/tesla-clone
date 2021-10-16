@@ -3,6 +3,7 @@ import "../styles/Login.css";
 import { Link } from "react-router-dom";
 import LanguageOutlinedIcon from "@material-ui/icons/LanguageOutlined";
 import ButtonPrimary from "./ButtonPrimary";
+import ButtonSecondary from "./ButtonSecondary";
 
 const Login = () => {
   const [email, setemail] = useState("");
@@ -47,6 +48,12 @@ const Login = () => {
           />
           <ButtonPrimary name='Sign In' type='submit' onClick={signIn} />
         </form>
+        <div className='login-divider'>
+            <hr /> <span>OR</span> <hr/>
+        </div>
+        <Link to='/signup'>
+            <ButtonSecondary name='create account' />
+        </Link>
       </div>
     </div>
   );
