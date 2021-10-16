@@ -10,8 +10,11 @@ import {
 import Menu from "./components/Menu";
 import HeaderBlock from "./components/HeaderBlock";
 import Login from "./components/Login";
+import { useSelector } from "react-redux";
+import { selectUser } from "./features/userSlice";
 
 function App() {
+  const user = useSelector(selectUser);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -23,8 +26,9 @@ function App() {
             {isMenuOpen && <Menu />}
             <HeaderBlock />
           </Route>
-          <Route exact path='/login'>
-            <Login/>
+          <Route exact path="/login">
+            {user ? <Redirect to="/teslaaccount" /> : <Login />}
+            <Login />
           </Route>
         </Switch>
       </div>
