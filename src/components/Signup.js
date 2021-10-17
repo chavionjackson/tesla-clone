@@ -33,9 +33,9 @@ const Signup = () => {
         </div>
       </div>
       <div className="signup-info">
-        <h1>Sign In</h1>
+        <h1>Create Account</h1>
         <form className="signup-form">
-          <label htmlFor="fName">Furst Name</label>
+          <label htmlFor="fName">First Name</label>
           <input
             type="text"
             id="fName"
@@ -63,13 +63,13 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonPrimary name="Sign In" type="submit" />
+          <ButtonPrimary name="create account" type="submit" />
         </form>
         <div className="signup-divider">
           <hr /> <span>OR</span> <hr />
         </div>
-        <Link to="/signup">
-          <ButtonSecondary name="create account" />
+        <Link to="/login">
+          <ButtonSecondary name="sign in" />
         </Link>
       </div>
     </div>

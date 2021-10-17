@@ -4,9 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 import LanguageOutlinedIcon from "@material-ui/icons/LanguageOutlined";
 import ButtonPrimary from "./ButtonPrimary";
 import ButtonSecondary from "./ButtonSecondary";
-import app from "../firebase";
+// import app from "../firebase";
 import { useDispatch } from "react-redux";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { db, signInWithEmailAndPassword } from "../firebase";
 import { login } from "../features/userSlice";
 
 const Login = () => {
@@ -14,32 +14,23 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const auth = getAuth();
 
-  const signIn = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userAuth) => {
-        // Signed in
-        dispatch(
-          login({
-            email: userAuth.user.email,
-            uid: userAuth.user.uid,
-            displayName: userAuth.user.displayName,
-          })
-        );
-        history.push("/teslaaccount");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-  };
+  signInWithEmailAndPassword(db, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
 
   //   const signIn = (e) => {
   //     e.preventDefault();
-  //     app
-  //       .signInWithEmailAndPassword(email, password)
+  //     signInWithEmailAndPassword(auth, email, password)
   //       .then((userAuth) => {
+  //         // Signed in
   //         dispatch(
   //           login({
   //             email: userAuth.user.email,
@@ -53,6 +44,25 @@ const Login = () => {
   //         alert(err.message);
   //       });
   //   };
+
+  // const signIn = (e) => {
+  //   e.preventDefault();
+  //   auth
+  //     .signInWithEmailAndPassword(email, password)
+  //     .then((userAuth) => {
+  //       dispatch(
+  //         login({
+  //           email: userAuth.user.email,
+  //           uid: userAuth.user.uid,
+  //           displayName: userAuth.user.displayName,
+  //         })
+  //       );
+  //       history.push("/teslaaccount");
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message);
+  //     });
+  // };
 
   return (
     <div className="login">
@@ -87,7 +97,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonPrimary name="Sign In" type="submit" onClick={signIn} />
+          <ButtonPrimary name="Sign In" type="submit" onClick={""} />
         </form>
         <div className="login-divider">
           <hr /> <span>OR</span> <hr />
