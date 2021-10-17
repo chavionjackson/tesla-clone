@@ -15,54 +15,54 @@ const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  signInWithEmailAndPassword(db, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    });
+//   signInWithEmailAndPassword(db, email, password)
+//     .then((userCredential) => {
+//       // Signed in
+//       const user = userCredential.user;
+//       // ...
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//     });
 
-  //   const signIn = (e) => {
-  //     e.preventDefault();
-  //     signInWithEmailAndPassword(auth, email, password)
-  //       .then((userAuth) => {
-  //         // Signed in
-  //         dispatch(
-  //           login({
-  //             email: userAuth.user.email,
-  //             uid: userAuth.user.uid,
-  //             displayName: userAuth.user.displayName,
-  //           })
-  //         );
-  //         history.push("/teslaaccount");
-  //       })
-  //       .catch((err) => {
-  //         alert(err.message);
-  //       });
-  //   };
+    const signIn = (e) => {
+      e.preventDefault();
+      signInWithEmailAndPassword(db, email, password)
+        .then((userAuth) => {
+          // Signed in
+          dispatch(
+            login({
+              email: userAuth.user.email,
+              uid: userAuth.user.uid,
+              displayName: userAuth.user.displayName,
+            })
+          );
+          history.push("/teslaaccount");
+        })
+        .catch((err) => {
+          alert(err.message);
+        });
+    };
 
-  // const signIn = (e) => {
-  //   e.preventDefault();
-  //   auth
-  //     .signInWithEmailAndPassword(email, password)
-  //     .then((userAuth) => {
-  //       dispatch(
-  //         login({
-  //           email: userAuth.user.email,
-  //           uid: userAuth.user.uid,
-  //           displayName: userAuth.user.displayName,
-  //         })
-  //       );
-  //       history.push("/teslaaccount");
-  //     })
-  //     .catch((err) => {
-  //       alert(err.message);
-  //     });
-  // };
+//   const signIn = (e) => {
+//     e.preventDefault();
+//     auth
+//       .signInWithEmailAndPassword(email, password)
+//       .then((userAuth) => {
+//         dispatch(
+//           login({
+//             email: userAuth.user.email,
+//             uid: userAuth.user.uid,
+//             displayName: userAuth.user.displayName,
+//           })
+//         );
+//         history.push("/teslaaccount");
+//       })
+//       .catch((err) => {
+//         alert(err.message);
+//       });
+//   };
 
   return (
     <div className="login">
