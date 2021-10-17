@@ -5,16 +5,47 @@ import "../styles/Signup.css";
 import LanguageOutlinedIcon from "@material-ui/icons/LanguageOutlined";
 import ButtonPrimary from "./ButtonPrimary";
 import ButtonSecondary from "./ButtonSecondary";
+import { auth } from "google-auth-library";
+import { login } from "../features/userSlice";
 
 const Signup = () => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
-
   const [fName, setFName] = useState("");
-
   const [lName, setLName] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const signUp = (e) => {
+    e.preventDefault();
+    if (!fName) {
+      return alert("Please enter a first name");
+    }
+    if (!lName) {
+      return alert("Please enter a last name");
+    }
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        userAuth.user
+          .updateProfile({
+            displayName: fName,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: fName,
+              })
+            );
+            history.push("/teslaaccount");
+          });
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   return (
     <div className="signup">
@@ -63,7 +94,7 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonPrimary name="create account" type="submit" />
+          <ButtonPrimary name="create account" type="submit" onClick={signUp} />
         </form>
         <div className="signup-divider">
           <hr /> <span>OR</span> <hr />

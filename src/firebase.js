@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-
+import { getFirestore } from "firebase/firestore/lite";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBNhmOvXpj_E0dGzH0sQQHfXkVgy_JviVY",
@@ -12,41 +11,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// const auth = app.auth()
-const db = getFirestore(app)
+const auth = getFirestore(app);
 
-const signInWithEmailAndPassword = async (email, password) => {
-  try {
-    await signInWithEmailAndPassword(email, password);
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
-
-// const registerWithEmailAndPassword = async (name, email, password) => {
-//   try {
-//     const res = await createUserWithEmailAndPassword(email, password);
-//     const user = res.user;
-//     await db.collection("users").add({
-//       uid: user.uid,
-//       name,
-//       authProvider: "local",
-//       email,
-//     });
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
-
-// const logout = () => {
-//   auth.signOut();
-// };
-
-
-
-export {
-  db,
-  signInWithEmailAndPassword,
-};
+export { auth };
