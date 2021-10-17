@@ -97,7 +97,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <ButtonPrimary name="Sign In" type="submit" onClick={""} />
+          <ButtonPrimary name="Sign In" type="submit" onClick={signIn} />
         </form>
         <div className="login-divider">
           <hr /> <span>OR</span> <hr />
