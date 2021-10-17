@@ -6,6 +6,7 @@ import ButtonPrimary from "./ButtonPrimary";
 import ButtonSecondary from "./ButtonSecondary";
 import app from "../firebase";
 import { useDispatch } from "react-redux";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { login } from "../features/userSlice";
 
 const Login = () => {
@@ -13,12 +14,13 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const auth = getAuth();
 
   const signIn = (e) => {
     e.preventDefault();
-    app
-      .signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then((userAuth) => {
+        // Signed in
         dispatch(
           login({
             email: userAuth.user.email,
@@ -32,6 +34,25 @@ const Login = () => {
         alert(err.message);
       });
   };
+
+  //   const signIn = (e) => {
+  //     e.preventDefault();
+  //     app
+  //       .signInWithEmailAndPassword(email, password)
+  //       .then((userAuth) => {
+  //         dispatch(
+  //           login({
+  //             email: userAuth.user.email,
+  //             uid: userAuth.user.uid,
+  //             displayName: userAuth.user.displayName,
+  //           })
+  //         );
+  //         history.push("/teslaaccount");
+  //       })
+  //       .catch((err) => {
+  //         alert(err.message);
+  //       });
+  //   };
 
   return (
     <div className="login">
